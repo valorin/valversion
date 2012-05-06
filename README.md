@@ -1,4 +1,8 @@
-zf-version-module
+ZF2 Version Module
 =================
 
-ZF2 Module: Provides an easy database versioning system.
+Provides an easy database versioning system for ZF2 applications.
+
+## Licence
+
+See [LICENCE.txt](https://github.com/valorin/zf2-version-module/blob/master/LICENCE.txt).

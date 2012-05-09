@@ -1,0 +1,18 @@
+<?php
+$sTitle  = "ZF2 Version Module ".Version\Module::getOption('module_version');
+$sBorder = str_pad("", strlen($sTitle), '=');
+?>
+<pre>==<?php echo $sBorder; ?>==
+= <?php echo $sTitle; ?> =
+==<?php echo $sBorder; ?>==
+
+<?php echo $content; ?>
+
+Current Version: <?php $oManager->getCurrent(); ?>
+Latest Version:  <?php $oManager->getLatest(); ?>
+
+Actions:
+- <a href='<?php echo $this->url('default', Array('action' => "index")); ?>'>Current Status</a>
+- <a href='<?php echo $this->url('default', Array('action' => "history")); ?>'>Upgrade History</a>
+- <a href='<?php echo $this->url('default', Array('action' => "upgrade")); ?>'>Upgrade to Latest</a>
+</pre>

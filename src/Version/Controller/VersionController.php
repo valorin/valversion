@@ -2,7 +2,7 @@
 namespace Version\Controller;
 use Zend\Mvc\Controller\ActionController,
     Zend\View\Model\ViewModel,
-    Zend\Db\Adapter\Adapter;
+    Version\Model\Manager;
 
 /**
  * Story Module - Page Controller
@@ -17,9 +17,9 @@ use Zend\Mvc\Controller\ActionController,
 class VersionController extends ActionController
 {
     /**
-     * @var Adapter
+     * @var Manager
      */
-    protected $_oDb;
+    protected $_oManager;
 
 
     /**
@@ -28,17 +28,29 @@ class VersionController extends ActionController
      */
     public function indexAction()
     {
+        /**
+         * Send Version Manager to the layout
+         */
+        $this->layout()->oManager = $this->_oManager;
     }
 
 
     /**
-     * Inject Db Adapter
+     * Inject Version Manager
      *
-     * @param  Adapter  $oDb    Database Adapter
+     * @param  Manager  $oManager   Version Manager
      */
-    public function setAdapter(Adapter $oDb)
+    public function setAdapter(Manager $oManager)
     {
-        $this->_oDb = $oDb;
+        /**
+         * Save
+         */
+        $this->_oManager = $oManager;
+
+
+        /**
+         * Return self
+         */
         return $this;
     }
 }

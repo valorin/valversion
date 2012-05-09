@@ -1,6 +1,8 @@
 <?php
 namespace Version;
-use Zend\Module\Consumer\AutoloaderProvider;
+use Zend\Module\Manager,
+    Zend\EventManager\StaticEventManager,
+    Zend\Module\Consumer\AutoloaderProvider;
 
 /**
  * ZF2 Version Module
@@ -14,6 +16,65 @@ use Zend\Module\Consumer\AutoloaderProvider;
  */
 class Module implements AutoloaderProvider
 {
+    /**
+     * @var Array
+     */
+    protected static $_aOptions;
+
+
+    /**
+     * Initiate the module
+     *
+     * @param   Manager $oManager
+     */
+    public function init(Manager $oManager)
+    {
+        /**
+         * Register Event for 'loadOptions'
+         */
+        $oManager->events()->attach('loadModules.post', array($this, 'loadOptions'));
+    }
+
+
+    /**
+     * Loads the static config options
+     *
+     * @param   Zend\Module\ModuleEvent $oEvent
+     */
+    public function loadOptions($oEvent)
+    {
+        /**
+         * Load Config Options
+         */
+        $aConfig = $oEvent->getConfigListener()->getMergedConfig();
+        static::$_aOptions = $aConfig['version'];
+
+    }
+
+
+    /**
+     * Retrieve option value
+     *
+     * @param   String  $sKey
+     * @param   String  $xDefault
+     */
+    public static function getOption($sKey = null, $xDefault = null)
+    {
+        if (is_null($sKey)) {
+            return static::$_aOptions;
+        }
+
+        if (!isset(static::$_aOptions[$sKey])) {
+            return $xDefault;
+        }
+        return static::$_aOptions[$sKey];
+    }
+
+
+    /**
+     * Autoloader config
+     *
+     */
     public function getAutoloaderConfig()
     {
         return array(
@@ -27,7 +88,13 @@ class Module implements AutoloaderProvider
             ),
         );
     }
-    public function getConfig()
+
+
+    /**
+     * Get module config
+     *
+     */
+    public function getConfig($env = null)
     {
         return include __DIR__ . '/config/module.config.php';
     }

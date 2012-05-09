@@ -34,4 +34,28 @@ class Manager
         $this->_oDb    = $oDb;
         $this->_oTable = $oTable;
     }
+
+
+    /**
+     * Returns the current version number
+     *
+     * @return  Integer
+     */
+    public function getCurrent()
+    {
+        $oCurrent = $this->_oTable->getCurrent();
+        return $oCurrent ? $oCurrent->version : 0;
+    }
+
+
+    /**
+     * Returns the latest available version number
+     *
+     * @return  Integer
+     */
+    public function getLatest()
+    {
+        // TODO: Read files and fetch latest version number
+        return 0;
+    }
 }

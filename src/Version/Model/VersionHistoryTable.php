@@ -36,6 +36,21 @@ class VersionHistoryTable extends TableGateway
         $this->_createIfNotExists();
     }
 
+    /**
+     * Returns the current version number
+     *
+     * @return  Integer
+     */
+    public function getCurrent()
+    {
+        /**
+         * Build Select
+         */
+        $oSelect = clone $this->sqlSelectPrototype;
+        $oSelect->order(Array("id DESC"))->fetch(1);
+        return $this->selectWith($oSelect)->current();
+    }
+
 
     /**
      * Checks the vesion table exists

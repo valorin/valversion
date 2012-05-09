@@ -8,8 +8,9 @@ $sBorder = str_pad("", strlen($sTitle), '=');
 
 <?php echo $content; ?>
 
-Current Version: <?php $oManager->getCurrent(); ?>
-Latest Version:  <?php $oManager->getLatest(); ?>
+Current Version: <?php echo $oManager->getCurrent(); ?>
+
+Latest Version:  <?php echo $oManager->getLatest(); ?>
 
 Actions:
 - <a href='<?php echo $this->url('default', Array('action' => "index")); ?>'>Current Status</a>

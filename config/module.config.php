@@ -2,6 +2,7 @@
 return array(
     'version' => Array(
         'module_version' => "v0.0.1",
+        'scripts_dir'    => __DIR__.'/../../../data/versions',
     ),
     'di' => array(
         'instance' => array(

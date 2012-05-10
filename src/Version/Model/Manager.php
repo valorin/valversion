@@ -1,7 +1,8 @@
 <?php
 namespace Version\Model;
 use Zend\Db\Adapter\Adapter,
-    Version\Model\VersionHistoryTable;
+    Version\Model\VersionHistoryTable,
+    Version\Module;
 
 /**
  * ZF2 Version Module - Manager
@@ -19,6 +20,11 @@ class Manager
      * @var Adapter
      */
     protected $_oDb;
+
+    /**
+     * @var Array
+     */
+    protected $_aScripts = Array();
 
 
     /**
@@ -55,7 +61,71 @@ class Manager
      */
     public function getLatest()
     {
-        // TODO: Read files and fetch latest version number
-        return 0;
+        /**
+         * Retrieve available version scripts
+         */
+        $aScripts = $this->listScripts();
+
+
+        /**
+         * Work out the latest version number
+         */
+        $aScripts = array_flip($aScripts);
+        return array_pop($aScripts);
+    }
+
+
+    /**
+     * Lists the available version scripts
+     * TODO: Throw exceptions instead of ignoring errors!
+     *
+     * @return  Array
+     */
+    public function listScripts()
+    {
+        /**
+         * Check cached
+         */
+        if (count($this->_aScripts)) {
+            return $this->_aScripts;
+        }
+
+
+        /**
+         * Check we can read dir
+         */
+        $sDir = Module::getOption('scripts_dir');
+        if (!is_dir($sDir)) {
+            return Array();
+        }
+
+
+        /**
+         * Open Dir
+         */
+        if (!($rDir = opendir($sDir))) {
+            return Array();
+        }
+
+
+        /**
+         * Loop cersion scripts
+         */
+        $aScripts = Array();
+        while ($sFile = readdir($rDir)) {
+            if (preg_match('^(\d*)\-(\w*)\.php^', $sFile, $aMatches)) {
+                $aScripts[$aMatches[1]] = $aMatches[2];
+            }
+        }
+
+
+        /**
+         * Close the directory like a good little programmer
+         */
+        closedir($rDir);
+
+        ksort($aScripts, SORT_NUMERIC);
+        $this->_aScripts = $aScripts;
+        return $aScripts;
     }
 }

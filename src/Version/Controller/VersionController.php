@@ -29,9 +29,10 @@ class VersionController extends ActionController
     public function indexAction()
     {
         /**
-         * Send Version Manager to the layout
+         * Set Layout Parameters
          */
         $this->layout()->oManager = $this->_oManager;
+        $this->layout()->sKey     = $this->getRequest()->query()->get("key");
     }
 
 

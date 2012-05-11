@@ -11,8 +11,10 @@ $sBorder = str_pad("", strlen($sTitle), '=');
 Current Version: <?php echo $oManager->getCurrent()."\n"; ?>
 Latest Version:  <?php echo $oManager->getLatest()."\n"; ?>
 
+<?php echo $sKey; ?>
+
 Actions:
-- <a href='<?php echo $this->url('default', Array('action' => "index")); ?>'>Current Status</a>
-- <a href='<?php echo $this->url('default', Array('action' => "history")); ?>'>Upgrade History</a>
-- <a href='<?php echo $this->url('default', Array('action' => "upgrade")); ?>'>Upgrade to Latest</a>
+- <a href='<?php echo $this->url('default', Array('controller' => "version", 'action' => "index"))."?key={$sKey}"; ?>'>Current Status</a>
+- <a href='<?php echo $this->url('default', Array('controller' => "version", 'action' => "history"))."?key={$sKey}"; ?>'>Upgrade History</a>
+- <a href='<?php echo $this->url('default', Array('controller' => "version", 'action' => "upgrade"))."?key={$sKey}"; ?>'>Upgrade to Latest</a>
 </pre>

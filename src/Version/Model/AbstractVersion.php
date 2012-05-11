@@ -30,7 +30,7 @@ abstract class AbstractVersion
         /**
          * Save vars
          */
-        $this->_oDb    = $oDb;
+        $this->_oDb = $oDb;
     }
 
 

@@ -77,7 +77,6 @@ class Manager
 
     /**
      * Lists the available version scripts
-     * TODO: Throw exceptions instead of ignoring errors!
      *
      * @return  Array
      */

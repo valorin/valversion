@@ -48,4 +48,26 @@ abstract class AbstractVersion
      * @return  Boolean
      */
     abstract public function downgrade();
+
+
+
+    protected function _drop($sTable)
+    {
+        /**
+         * Check for Array
+         */
+        if (is_array($sTable)) {
+            foreach ($sTable as $sTbl) {
+                $this->_drop($sTbl);
+            }
+            return;
+        }
+
+
+        /**
+         * Drop the table
+         */
+        $sSql = "DROP TABLE `{$sTable}`";
+        $this->_oDb->query($sSql, Adapter::QUERY_MODE_EXECUTE);
+    }
 }

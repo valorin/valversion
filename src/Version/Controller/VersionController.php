@@ -33,6 +33,14 @@ class VersionController extends ActionController
          */
         $this->layout()->oManager = $this->_oManager;
         $this->layout()->sKey     = $this->getRequest()->query()->get("key");
+
+
+        /**
+         * Set view params
+         */
+        return Array(
+            'bUpgrade' => $this->_oManager->canUpgrade()
+        );
     }
 
 

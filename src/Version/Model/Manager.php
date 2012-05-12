@@ -43,6 +43,17 @@ class Manager
 
 
     /**
+     * Checks if there is a new version/upgrade which can be applied
+     *
+     * @return  Boolean
+     */
+    public function canUpgrade()
+    {
+        return ($this->getCurrent() < $this->getLatest());
+    }
+
+
+    /**
      * Returns the current version number
      *
      * @return  Integer

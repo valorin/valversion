@@ -1,27 +1,27 @@
 <?php
 return array(
-    'version' => Array(
+    'valversion' => Array(
         'module_version' => "v0.0.1",
         'scripts_dir'    => __DIR__.'/../../../data/versions',
     ),
     'di' => array(
         'instance' => array(
             'alias' => array(
-                'version' => 'Version\Controller\VersionController',
+                'version' => 'ValVersion\Controller\VersionController',
             ),
 
-            'Version\Controller\VersionController' => array(
+            'ValVersion\Controller\VersionController' => array(
                 'parameters' => array(
-                    'oManager' => 'Version\Model\Manager',
+                    'oManager' => 'ValVersion\Model\Manager',
                 ),
             ),
-            'Version\Model\Manager' => array(
+            'ValVersion\Model\Manager' => array(
                 'parameters' => array(
                     'oDb'    => 'Zend\Db\Adapter\Adapter',
-                    'oTable' => 'Version\Model\VersionHistoryTable',
+                    'oTable' => 'ValVersion\Model\VersionHistoryTable',
                 ),
             ),
-            'Version\Model\VersionHistoryTable' => array(
+            'ValVersion\Model\VersionHistoryTable' => array(
                 'parameters' => array(
                     'oDb' => 'Zend\Db\Adapter\Adapter',
                 ),

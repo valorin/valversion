@@ -1,5 +1,5 @@
 <?php
-namespace Version;
+namespace ValVersion;
 use Zend\Module\Manager,
     Zend\EventManager\StaticEventManager,
     Zend\Module\Consumer\AutoloaderProvider;
@@ -9,8 +9,8 @@ use Zend\Module\Manager,
  *
  * Provides an easy database versioning system for ZF2 applications.
  *
- * @package     zf2-version-module
- * @subpackage  Version\Module
+ * @package     ValVersion
+ * @subpackage  ValVersion\Module
  * @copyright   Copyright (c) 2012, Stephen Rees-Carter <http://src.id.au/>
  * @license     New BSD Licence, see LICENCE.txt
  */
@@ -47,7 +47,7 @@ class Module implements AutoloaderProvider
          * Load Config Options
          */
         $aConfig = $oEvent->getConfigListener()->getMergedConfig();
-        static::$_aOptions = $aConfig['version'];
+        static::$_aOptions = $aConfig['valversion'];
 
     }
 

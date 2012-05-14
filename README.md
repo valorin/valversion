@@ -31,7 +31,7 @@ This example uses an IP address and secret key to authenticate the request:
     $sKey     = "VERSION_ACCESS_KEY";
     if (in_array($_SERVER['REMOTE_ADDR'], $aAllowed)
         && isset($_GET['key']) && $_GET['key'] == $sKey) {
-        $aReturn['modules'][] = 'Version';
+        $aReturn['modules'][] = 'ValVersion';
     }
 
     return $aReturn;
@@ -41,4 +41,4 @@ it automatically to each url within the module.*
 
 ## Licence
 
-See [LICENCE.txt](https://github.com/valorin/zf2-version-module/blob/master/LICENCE.txt).
+See [LICENCE.txt](https://github.com/valorin/ValVersion/blob/master/LICENCE.txt).

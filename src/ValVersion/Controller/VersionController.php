@@ -1,16 +1,16 @@
 <?php
-namespace Version\Controller;
+namespace ValVersion\Controller;
 use Zend\Mvc\Controller\ActionController,
     Zend\View\Model\ViewModel,
-    Version\Model\Manager;
+    ValVersion\Model\Manager;
 
 /**
  * Story Module - Page Controller
  *
  * Retrieves, creates, and edits, Story Pages
  *
- * @package     zf2-version-module
- * @subpackage  Version\Controller
+ * @package     ValVersion
+ * @subpackage  ValVersion\Controller
  * @copyright   Copyright (c) 2012, Stephen Rees-Carter <http://src.id.au/>
  * @license     New BSD Licence, see LICENCE.txt
  */

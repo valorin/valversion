@@ -1,5 +1,5 @@
 <?php
-namespace Version\Model;
+namespace ValVersion\Model;
 use Zend\Db\Adapter\Adapter;
 
 /**
@@ -7,8 +7,8 @@ use Zend\Db\Adapter\Adapter;
  *
  * Version Script abstract class.
  *
- * @package     zf2-version-module
- * @subpackage  Version\Model
+ * @package     ValVersion
+ * @subpackage  ValVersion\Model
  * @copyright   Copyright (c) 2012, Stephen Rees-Carter <http://src.id.au/>
  * @license     New BSD Licence, see LICENCE.txt
  */

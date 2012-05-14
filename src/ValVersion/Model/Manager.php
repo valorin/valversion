@@ -1,16 +1,16 @@
 <?php
-namespace Version\Model;
+namespace ValVersion\Model;
 use Zend\Db\Adapter\Adapter,
-    Version\Model\VersionHistoryTable,
-    Version\Module;
+    ValVersion\Model\VersionHistoryTable,
+    ValVersion\Module;
 
 /**
  * ZF2 Version Module - Manager
  *
  * Manages the version up/down-grade process.
  *
- * @package     zf2-version-module
- * @subpackage  Version\Model
+ * @package     ValVersion
+ * @subpackage  ValVersion\Model
  * @copyright   Copyright (c) 2012, Stephen Rees-Carter <http://src.id.au/>
  * @license     New BSD Licence, see LICENCE.txt
  */

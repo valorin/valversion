@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="zf2-version-module" default="build">
+<project name="ValVersion" default="build">
  <property name="source" value="src"/>
  <property name="tests" value="tests"/>
 

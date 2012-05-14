@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="zf2-version-module">
+<ruleset name="ValVersion">
     <description>Valorin's coding standard</description>
 
     <rule ref="Zend">

@@ -1,5 +1,7 @@
 <?php
-$sTitle  = "ZF2 Version Module ".ValVersion\Module::getOption('module_version');
+use ValCommon\Tools\Setting;
+
+$sTitle  = "ValVersion ZF2 Version Module ".Setting::get('valversion_version');
 $sBorder = str_pad("", strlen($sTitle), '=');
 ?>
 <pre>==<?php echo $sBorder; ?>==
@@ -10,8 +12,6 @@ $sBorder = str_pad("", strlen($sTitle), '=');
 
 Current Version: <?php echo $oManager->getCurrent()."\n"; ?>
 Latest Version:  <?php echo $oManager->getLatest()."\n"; ?>
-
-<?php echo $sKey; ?>
 
 Actions:
 - <a href='<?php echo $this->url('default', Array('controller' => "version", 'action' => "index"))."?key={$sKey}"; ?>'>Current Status</a>

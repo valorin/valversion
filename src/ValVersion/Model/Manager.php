@@ -1,8 +1,8 @@
 <?php
 namespace ValVersion\Model;
 use Zend\Db\Adapter\Adapter,
-    ValVersion\Model\VersionHistoryTable,
-    ValVersion\Module;
+    ValCommon\Tools\Setting,
+    ValVersion\Model\VersionHistoryTable;
 
 /**
  * ZF2 Version Module - Manager
@@ -104,7 +104,7 @@ class Manager
         /**
          * Check we can read dir
          */
-        $sDir = Module::getOption('scripts_dir');
+        $sDir = Setting::get('valversion_scripts_dir');
         if (!is_dir($sDir)) {
             return Array();
         }

@@ -1,8 +1,10 @@
 <?php
 return array(
-    'valversion' => Array(
-        'module_version' => "v0.0.1",
-        'scripts_dir'    => __DIR__.'/../../../data/versions',
+    'valcommon' => Array(
+        'setting' => Array(
+            'valversion_version'     => "v0.0.1",
+            'valversion_scripts_dir' => __DIR__.'/../../../data/versions',
+        ),
     ),
     'di' => array(
         'instance' => array(

@@ -68,7 +68,7 @@ abstract class AbstractVersion
             $sSql  = "INSERT INTO `{$sTable}` ";
             $sSql .= "(`".implode("`, `", array_keys($aRecord))."`)";
             $sSql .= " VALUES ";
-            $sSql .= "('".implode("', '", $aRecord)."')";
+            $sSql .= "(".implode(", ", $aRecord).")";
 
             $this->_oDb->query($sSql, Adapter::QUERY_MODE_EXECUTE);
         }

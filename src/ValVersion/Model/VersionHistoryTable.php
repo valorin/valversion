@@ -43,12 +43,12 @@ class VersionHistoryTable extends TableGateway
      */
     public function getCurrent()
     {
-        /**
-         * Build Select
-         */
-        $oSelect = clone $this->sqlSelectPrototype;
-        $oSelect->order(Array("id DESC"))->fetch(1);
-        return $this->selectWith($oSelect)->current();
+        $sSql    = "SELECT * FROM `version_history` ORDER BY id DESC LIMIT 1";
+        $oRowset = $this->getAdapter()->query(
+            $sSql, Adapter::QUERY_MODE_EXECUTE
+        );
+
+        return $oRowset ? $oRowset->current() : null;
     }
 
 

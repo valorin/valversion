@@ -138,4 +138,166 @@ class Manager
         $this->_aScripts = $aScripts;
         return $aScripts;
     }
+
+
+    /**
+     * Upgrade to specified version (or latest if null)
+     *
+     * @param   Integer $nVersion   Version to upgrade to
+     * @return  Array
+     */
+    public function upgrade($nVersion = null)
+    {
+        /**
+         * Check we have a version number
+         */
+        if (is_null($nVersion)) {
+            $nVersion = $this->getLatest();
+        }
+
+
+        /**
+         * Check if an upgrade is needed
+         */
+        $nCurrent = $this->getCurrent();
+        if ($nCurrent == $nVersion) {
+            return Array("No scripts to apply.");
+        }
+
+
+        /**
+         * Check for Upgrade
+         */
+        if ($nCurrent < $nVersion) {
+            return $this->_doUpgrade($nVersion);
+        }
+
+
+        /**
+         * Do Downgrade
+         */
+        return $this->_doDowngrade($nVersion);
+    }
+
+
+    /**
+     * Upgrade to target version
+     *
+     * @param   Integer $nTarget    Target version
+     * @return  Array
+     */
+    protected function _doUpgrade($nTarget)
+    {
+        /**
+         * Load variables
+         */
+        $nCurrent = $this->getCurrent();
+        $aScripts = $this->listScripts();
+        $sDir     = Setting::get('valversion_scripts_dir');
+        $aReturn  = Array();
+
+
+        /**
+         * Loop scripts and apply
+         */
+        for ($i = $nCurrent + 1; $i <= $nTarget; $i++) {
+            /**
+             * Check version script exists
+             */
+            if (!isset($aScripts[$i])) {
+                continue;
+            }
+
+
+            /**
+             * Load the script
+             */
+            require_once "{$sDir}/{$i}-{$aScripts[$i]}.php";
+            $sScript = "\Application\Version\\{$aScripts[$i]}";
+            $oScript = new $sScript($this->_oDb);
+
+
+            /**
+             * Run the Upgrade
+             */
+            $oScript->upgrade();
+
+
+            /**
+             * Add upgrade version history record
+             */
+            $sDescription = "Applied {$aScripts[$i]}::upgrade()";
+            $this->_oTable->insert(
+                Array(
+                    'version'     => $i,
+                    'description' => $sDescription,
+                )
+            );
+
+            $aReturn[] = $sDescription;
+        }
+
+        return $aReturn;
+    }
+
+
+    /**
+     * Downgrade to target version
+     *
+     * @param   Integer $nTarget    Target version
+     * @return  Array
+     */
+    protected function _doDowngrade($nTarget)
+    {
+        /**
+         * Load variables
+         */
+        $nCurrent = $this->getCurrent();
+        $aScripts = $this->listScripts();
+        $sDir     = Setting::get('valversion_scripts_dir');
+        $aReturn  = Array();
+
+
+        /**
+         * Loop scripts and apply
+         */
+        for ($i = $nCurrent; $i > $nTarget; $i--) {
+            /**
+             * Check version script exists
+             */
+            if (!isset($aScripts[$i])) {
+                continue;
+            }
+
+
+            /**
+             * Load the script
+             */
+            require_once "{$sDir}/{$i}-{$aScripts[$i]}.php";
+            $sScript = "\Application\Version\\{$aScripts[$i]}";
+            $oScript = new $sScript($this->_oDb);
+
+
+            /**
+             * Run the Upgrade
+             */
+            $oScript->upgrade();
+
+
+            /**
+             * Add upgrade version history record
+             */
+            $sDescription = "Applied {$aScripts[$i]}::downgrade()";
+            $this->_oTable->insert(
+                Array(
+                    'version'     => $i,
+                    'description' => $sDescription,
+                )
+            );
+
+            $aReturn[] = $sDescription;
+        }
+
+        return $aReturn;
+    }
 }

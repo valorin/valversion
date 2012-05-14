@@ -31,8 +31,7 @@ class VersionController extends ActionController
         /**
          * Set Layout Parameters
          */
-        $this->layout()->oManager = $this->_oManager;
-        $this->layout()->sKey     = $this->getRequest()->query()->get("key");
+        $this->_setLayoutParams();
 
 
         /**
@@ -41,6 +40,27 @@ class VersionController extends ActionController
         return Array(
             'bUpgrade' => $this->_oManager->canUpgrade()
         );
+    }
+
+
+    /**
+     * Upgrades the database to latest
+     *
+     */
+    public function upgradeAction()
+    {
+        /**
+         * Set Layout Parameters
+         */
+        $this->_setLayoutParams();
+
+
+        /**
+         * Run Upgrade
+         */
+        $aApplied = $this->_oManager->upgrade();
+
+        return Array('aApplied' => $aApplied);
     }
 
 
@@ -61,5 +81,16 @@ class VersionController extends ActionController
          * Return self
          */
         return $this;
+    }
+
+
+    /**
+     * Set the layout parameters
+     *
+     */
+    protected function _setLayoutParams()
+    {
+        $this->layout()->oManager = $this->_oManager;
+        $this->layout()->sKey     = $this->getRequest()->query()->get("key");
     }
 }

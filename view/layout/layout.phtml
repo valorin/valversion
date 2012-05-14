@@ -16,5 +16,7 @@ Latest Version:  <?php echo $oManager->getLatest()."\n"; ?>
 Actions:
 - <a href='<?php echo $this->url('default', Array('controller' => "version", 'action' => "index"))."?key={$sKey}"; ?>'>Current Status</a>
 - <a href='<?php echo $this->url('default', Array('controller' => "version", 'action' => "history"))."?key={$sKey}"; ?>'>Upgrade History</a>
+<?php if ($oManager->canUpgrade()): ?>
 - <a href='<?php echo $this->url('default', Array('controller' => "version", 'action' => "upgrade"))."?key={$sKey}"; ?>'>Upgrade to Latest</a>
+<?php endif; ?>
 </pre>

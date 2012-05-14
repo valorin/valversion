@@ -50,7 +50,36 @@ abstract class AbstractVersion
     abstract public function downgrade();
 
 
+    /**
+     * Insert multiple records into the database
+     *
+     * @param   String  $sTable     Table to insert records into
+     * @param   Array   $aRecords   Records to insert
+     */
+    protected function _insert($sTable, $aRecords)
+    {
+        /**
+         * Loop Records
+         */
+        foreach ($aRecords as $aRecord) {
+            /**
+             * Build SQL
+             */
+            $sSql  = "INSERT INTO `{$sTable}` ";
+            $sSql .= "(`".implode("`, `", array_keys($aRecord))."`)";
+            $sSql .= " VALUES ";
+            $sSql .= "('".implode("', '", $aRecord)."')";
 
+            $this->_oDb->query($sSql, Adapter::QUERY_MODE_EXECUTE);
+        }
+    }
+
+
+    /**
+     * Drop the specific table, or array of tables
+     *
+     * @param   String|Array    $sTable Table(s) to drop
+     */
     protected function _drop($sTable)
     {
         /**

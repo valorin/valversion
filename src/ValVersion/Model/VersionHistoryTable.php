@@ -20,7 +20,7 @@ class VersionHistoryTable extends TableGateway
     /**
      * Constructor
      *
-     * @param Adapter   $oDb
+     * @param Adapter $oDb
      */
     public function __construct(Adapter $oDb)
     {
@@ -39,7 +39,7 @@ class VersionHistoryTable extends TableGateway
     /**
      * Returns the current version number
      *
-     * @return  Integer
+     * @return Integer
      */
     public function getCurrent()
     {

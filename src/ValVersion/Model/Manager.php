@@ -30,7 +30,7 @@ class Manager
     /**
      * Constructor
      *
-     * @param  Adapter  $oDb    Database Adapter
+     * @param Adapter $oDb Database Adapter
      */
     public function __construct(Adapter $oDb, VersionHistoryTable $oTable)
     {
@@ -45,7 +45,7 @@ class Manager
     /**
      * Checks if there is a new version/upgrade which can be applied
      *
-     * @return  Boolean
+     * @return Boolean
      */
     public function canUpgrade()
     {
@@ -56,11 +56,12 @@ class Manager
     /**
      * Returns the current version number
      *
-     * @return  Integer
+     * @return Integer
      */
     public function getCurrent()
     {
         $oCurrent = $this->_oTable->getCurrent();
+
         return $oCurrent ? $oCurrent->version : 0;
     }
 
@@ -68,7 +69,7 @@ class Manager
     /**
      * Returns the latest available version number
      *
-     * @return  Integer
+     * @return Integer
      */
     public function getLatest()
     {
@@ -82,6 +83,7 @@ class Manager
          * Work out the latest version number
          */
         $aScripts = array_flip($aScripts);
+
         return array_pop($aScripts);
     }
 
@@ -89,7 +91,7 @@ class Manager
     /**
      * Lists the available version scripts
      *
-     * @return  Array
+     * @return Array
      */
     public function listScripts()
     {
@@ -136,6 +138,7 @@ class Manager
 
         ksort($aScripts, SORT_NUMERIC);
         $this->_aScripts = $aScripts;
+
         return $aScripts;
     }
 
@@ -143,8 +146,8 @@ class Manager
     /**
      * Upgrade to specified version (or latest if null)
      *
-     * @param   Integer $nVersion   Version to upgrade to
-     * @return  Array
+     * @param  Integer $nVersion Version to upgrade to
+     * @return Array
      */
     public function upgrade($nVersion = null)
     {
@@ -176,6 +179,7 @@ class Manager
         /**
          * Do Downgrade
          */
+
         return $this->_doDowngrade($nVersion);
     }
 
@@ -183,8 +187,8 @@ class Manager
     /**
      * Upgrade to target version
      *
-     * @param   Integer $nTarget    Target version
-     * @return  Array
+     * @param  Integer $nTarget Target version
+     * @return Array
      */
     protected function _doUpgrade($nTarget)
     {
@@ -244,8 +248,8 @@ class Manager
     /**
      * Downgrade to target version
      *
-     * @param   Integer $nTarget    Target version
-     * @return  Array
+     * @param  Integer $nTarget Target version
+     * @return Array
      */
     protected function _doDowngrade($nTarget)
     {

@@ -23,7 +23,7 @@ abstract class AbstractVersion
     /**
      * Constructor
      *
-     * @param  Adapter  $oDb    Database Adapter
+     * @param Adapter $oDb Database Adapter
      */
     public function __construct(Adapter $oDb)
     {
@@ -37,7 +37,7 @@ abstract class AbstractVersion
     /**
      * Upgrade Script
      *
-     * @return  Boolean
+     * @return Boolean
      */
     abstract public function upgrade();
 
@@ -45,7 +45,7 @@ abstract class AbstractVersion
     /**
      * Downgrade Script
      *
-     * @return  Boolean
+     * @return Boolean
      */
     abstract public function downgrade();
 
@@ -53,8 +53,8 @@ abstract class AbstractVersion
     /**
      * Insert multiple records into the database
      *
-     * @param   String  $sTable     Table to insert records into
-     * @param   Array   $aRecords   Records to insert
+     * @param String $sTable   Table to insert records into
+     * @param Array  $aRecords Records to insert
      */
     protected function _insert($sTable, $aRecords)
     {
@@ -78,7 +78,7 @@ abstract class AbstractVersion
     /**
      * Drop the specific table, or array of tables
      *
-     * @param   String|Array    $sTable Table(s) to drop
+     * @param String|Array $sTable Table(s) to drop
      */
     protected function _drop($sTable)
     {
@@ -89,6 +89,7 @@ abstract class AbstractVersion
             foreach ($sTable as $sTbl) {
                 $this->_drop($sTbl);
             }
+
             return;
         }
 

@@ -37,6 +37,7 @@ class VersionController extends ActionController
         /**
          * Set view params
          */
+
         return Array(
             'bUpgrade' => $this->_oManager->canUpgrade()
         );
@@ -67,7 +68,7 @@ class VersionController extends ActionController
     /**
      * Inject Version Manager
      *
-     * @param  Manager  $oManager   Version Manager
+     * @param Manager $oManager Version Manager
      */
     public function setAdapter(Manager $oManager)
     {
@@ -80,6 +81,7 @@ class VersionController extends ActionController
         /**
          * Return self
          */
+
         return $this;
     }
 

@@ -53,10 +53,10 @@ return array(
 valorin@gandalf:~/zf2/$ php ./public/index.php
 
 Version Management
-  cli version status           [--verbose|-v]    Display the current version status of application.
-  cli version upgrade          [--verbose|-v]    Upgrade the application to the latest version.
-  cli version upgrade   NUMBER [--verbose|-v]    Upgrade the application to the specified version.
-  cli version downgrade NUMBER [--verbose|-v]    Downgrade the application to the specified version.
+  index.php version status           [--verbose|-v]    Display the current version status of application.
+  index.php version upgrade          [--verbose|-v]    Upgrade the application to the latest version.
+  index.php version upgrade   NUMBER [--verbose|-v]    Upgrade the application to the specified version.
+  index.php version downgrade NUMBER [--verbose|-v]    Downgrade the application to the specified version.
 
   --verbose    (optional) Output debugging information.
 ```

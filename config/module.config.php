@@ -1,5 +1,12 @@
 <?php
 return array(
+    'valorin' => Array(
+        'version' => Array(
+            'managers' => Array(
+                'DbAdapter',
+            ),
+        ),
+    ),
     'controllers' => array(
         'invokables' => array(
             'Valorin\Version\Controller\Version' => 'Valorin\Version\Controller\VersionController',

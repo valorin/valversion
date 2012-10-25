@@ -12,6 +12,8 @@
 
 namespace Valorin\Version;
 
+use Valorin\Version\Manager\DbAdapter as DbAdapterManager;
+use Valorin\Version\Script\ScriptGateway;
 use Zend\Console\Adapter\AdapterInterface as Console;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
@@ -22,6 +24,27 @@ class Module implements
     ConsoleUsageProviderInterface,
     ConsoleBannerProviderInterface
 {
+    /**
+     * Returns the Service Manager Config
+     *
+     * @return Array
+     */
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => Array(
+                'Valorin\Version\Manager\DbAdapter' => function ($sm) {
+                    return new DbAdapterManager($sm);
+                },
+                'Valorin\Version\Script\ScriptGateway' => function ($sm) {
+                    $config = $sm->get('Config');
+                    return new ScriptGateway($config['valorin']['version']);
+                },
+            ),
+        );
+    }
+
+
     /**
      * Returns the Module config Array
      *

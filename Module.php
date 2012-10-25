@@ -1,44 +1,66 @@
 <?php
-namespace ValVersion;
-use Zend\Module\Consumer\AutoloaderProvider;
-
 /**
- * ZF2 Version Module
+ * Valorin/Version - ZF2 Version Module
  *
- * Provides an easy database versioning system for ZF2 applications.
+ * A simple database versioning system for ZF2 applications.
  *
- * @package     ValVersion
- * @subpackage  ValVersion\Module
- * @copyright   Copyright (c) 2012, Stephen Rees-Carter <http://src.id.au/>
- * @license     New BSD Licence, see LICENCE.txt
+ * @package    Valorin\Version
+ * @subpackage Valorin\Version\Module
+ * @copyright  Copyright (c) 2012, Stephen Rees-Carter <http://stephen.rees-carter.net/>
+ * @license    New BSD Licence, see LICENCE.txt
  */
-class Module implements AutoloaderProvider
+
+namespace Valorin\Version;
+
+use Zend\Console\Adapter\AdapterInterface as Console;
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
+use Zend\ModuleManager\Feature\ConsoleBannerProviderInterface;
+
+class Module implements
+    ConfigProviderInterface,
+    ConsoleUsageProviderInterface,
+    ConsoleBannerProviderInterface
 {
     /**
-     * Autoloader config
+     * Returns the Module config Array
      *
+     * @return Array
      */
-    public function getAutoloaderConfig()
+    public function getConfig()
     {
-        return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
-                __DIR__ . '/autoload_classmap.php',
-            ),
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ),
-            ),
-        );
+        return include __DIR__ . '/config/module.config.php';
     }
 
 
     /**
-     * Get module config
+     * Returns the Console Banner
      *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function getConfig($env = null)
+    public function getConsoleBanner(Console $console)
     {
-        return include __DIR__ . '/config/module.config.php';
+        $version = trim(file_get_contents(__DIR__ ."/version.txt"));
+        return "> Valorin/Version module v{$version}\n";
+    }
+
+
+    /**
+     * Returns the Console Usage information
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @param  Console $console
+     * @return Array
+     */
+    public function getConsoleUsage(Console $console)
+    {
+        return array(
+            "Version Management",
+            "version status           [--verbose|-v]" => "Display the current version status of application.",
+            "version upgrade          [--verbose|-v]" => "Upgrade the application to the latest version.",
+            "version upgrade   NUMBER [--verbose|-v]" => "Upgrade the application to the specified version.",
+            "version downgrade NUMBER [--verbose|-v]" => "Downgrade the application to the specified version.",
+            Array('--verbose', "(optional) Output debugging information."),
+        );
     }
 }

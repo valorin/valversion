@@ -13,7 +13,7 @@ A simple database versioning system for ZF2 applications.
     },
 ```
 
-2. Run `composer.phar install` or `composer.phar updat` to install in your application.
+2. Run `composer.phar install` or `composer.phar update` to install in your application.
 
 3. Add the module name (`Valorin\Version`) to `config/application.config.php`.
 
@@ -49,16 +49,17 @@ return array(
 
 5. The available commands will be exposed via the standard ZF2 console.
 
-    valorin@gandalf:~/zf2/$ php ./public/index.php
+```
+valorin@gandalf:~/zf2/$ php ./public/index.php
 
-    Version Management
-      cli version status           [--verbose|-v]    Display the current version status of application.
-      cli version upgrade          [--verbose|-v]    Upgrade the application to the latest version.
-      cli version upgrade   NUMBER [--verbose|-v]    Upgrade the application to the specified version.
-      cli version downgrade NUMBER [--verbose|-v]    Downgrade the application to the specified version.
+Version Management
+  cli version status           [--verbose|-v]    Display the current version status of application.
+  cli version upgrade          [--verbose|-v]    Upgrade the application to the latest version.
+  cli version upgrade   NUMBER [--verbose|-v]    Upgrade the application to the specified version.
+  cli version downgrade NUMBER [--verbose|-v]    Downgrade the application to the specified version.
 
-      --verbose    (optional) Output debugging information.
-
+  --verbose    (optional) Output debugging information.
+```
 
 ## Licence
 

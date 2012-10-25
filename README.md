@@ -1,7 +1,7 @@
 ZF2 Version Module v2
 =====================
 
-A simple database versioning system for ZF2 applications.
+A simple versioning system for ZF2 applications.
 
 ## Installation Instructions
 

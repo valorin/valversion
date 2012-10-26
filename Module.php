@@ -33,9 +33,6 @@ class Module implements
     {
         return array(
             'factories' => Array(
-                'Valorin\Version\Manager\DbAdapter' => function ($sm) {
-                    return new DbAdapterManager($sm);
-                },
                 'Valorin\Version\Script\ScriptGateway' => function ($sm) {
                     $config = $sm->get('Config');
                     return new ScriptGateway($config['valorin']['version']);

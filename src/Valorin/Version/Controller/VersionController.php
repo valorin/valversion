@@ -51,35 +51,67 @@ class VersionController extends AbstractActionController
 
 
         /**
-         * Load enabled managers
-         */
-        $managers = $this->getConfig('managers');
-
-
-        /**
          * Output header
          */
-        $output  = "\n=====================";
-        $output .= "\n== Version Manager ==";
-        $output .= "\n=====================";
-        $output .= "\n\nChecking application version status\n\n";
+        $output  = $this->header;
+        $output .= "\nApplication version status:\n\n";
 
 
         /**
-         * Check the Scripts for the latest version
+         * Loop Managers
          */
-        $output .= "    Latest version: ";
-        $output .= $this->getScriptGateway()->getLatest();
-        $output .= "\n\n";
-
-
-        /**
-         * Check each manager for status
-         */
-        $sm = $this->getServiceLocator();
+        $managers = $this->getConfig('managers');
         foreach ($managers as $manager) {
-            $class   = $sm->get("Valorin\Version\Manager\\{$manager}");
-            $output .= $class->getStatus();
+            $class   = new $manager($this->getServiceLocator());
+            $output .= $class->getStatus()."\n";
+        }
+
+        return $output;
+    }
+
+
+    /**
+     * Upgrade the application
+     *
+     * @return String
+     * @throws RuntimeException
+     */
+    public function upgradeAction()
+    {
+        /**
+         * Get Request & verify ConsoleRequest
+         */
+        $request = $this->getRequest();
+
+        if (!$request instanceof ConsoleRequest) {
+            throw new \RuntimeException(self::NOTCONSOLE);
+        }
+
+
+        /**
+         * Prepare variables
+         */
+        $managers = $this->getConfig('managers');
+        $target   = $request->getParam('target');
+
+
+        /**
+         * Output depending on target
+         */
+        $output = $this->header;
+        if (is_null($target)) {
+            $output .= "\nUpgrading version to latest.\n\n";
+        } else {
+            $output .= "\nUpgrading version to target (#{$target}).\n\n";
+        }
+
+
+        /**
+         * Upgrade each manager
+         */
+        foreach ($managers as $manager) {
+            $class   = new $manager($this->getServiceLocator());
+            $output .= $class->upgrade($target);
         }
 
         return $output."\n";

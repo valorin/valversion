@@ -28,15 +28,19 @@ interface VersionInterface
     /**
      * Upgrade the application
      *
+     * @param  Class   $adapter (optional) Adapter to apply upgrades on
+     * @return Boolean
      * @throws VersionException
      */
-    public function upgrade();
+    public function upgrade($adapter = null);
 
 
     /**
      * Downgrade the application
      *
+     * @param  Class   $adapter (optional) Adapter to apply downgrades on
+     * @return Boolean
      * @throws VersionException
      */
-    public function downgrade();
+    public function downgrade($adapter = null);
 }

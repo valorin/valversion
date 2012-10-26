@@ -30,55 +30,56 @@ class ScriptGateway
     public function __construct($config)
     {
         $this->config = $config;
-
-        $this->parseScripts();
     }
 
 
     /**
      * Returns the latest version number
      *
+     * @param  String  $class Get latest version for class
      * @return Integer
      */
-    public function getLatest()
+    public function getLatest($class)
     {
-        $versions = array_keys($this->scripts);
+        $scripts  = $this->getScripts($class);
+        $versions = array_keys($scripts);
         return array_pop($versions);
     }
 
 
     /**
-     * Parses the version scripts and loads them for use
+     * Returns an Array of version scripts
      *
-     * @return Gateway
+     * @param  String  $class Get latest version for class
+     * @return Array
      * @throws VersionException
      */
-    protected function parseScripts()
+    public function getScripts($class)
     {
         /**
          * Load scripts from 'class_dir'
          */
-        if (!is_readable($this->config['class_dir'])) {
-            throw new VersionException("Unable to read scripts dir: {$this->config['class_dir']}");
+        if (!is_readable($this->config[$class]['class_dir'])) {
+            throw new VersionException("Unable to read scripts dir: {$this->config[$class]['class_dir']}");
         }
 
-        $scripts = scandir($this->config['class_dir']);
+        $dir = scandir($this->config[$class]['class_dir']);
 
 
         /**
          * Loop and extract actual classes
          */
-        $this->scripts = Array();
-        foreach ($scripts as $file) {
+        $scripts = Array();
+        foreach ($dir as $file) {
             if (!preg_match("/^(\d+)-(\w+)\.php$/", $file, $matches)) {
                 continue;
             }
 
-            require_once $this->config['class_dir']."/".$file;
-            $class = $this->config['class_namespace']."\\".$matches[2];
-            $this->scripts[$matches[1]] = new $class($this);
+            require_once $this->config[$class]['class_dir']."/".$file;
+            $class = $this->config[$class]['class_namespace']."\\".$matches[2];
+            $scripts[$matches[1]] = new $class($this);
         }
 
-        return $this;
+        return $scripts;
     }
 }

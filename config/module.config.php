@@ -3,7 +3,7 @@ return array(
     'valorin' => Array(
         'version' => Array(
             'managers' => Array(
-                'DbAdapter',
+                'DbAdapter' => 'Valorin\Version\Manager\DbAdapter',
             ),
         ),
     ),

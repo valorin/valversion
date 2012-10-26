@@ -26,7 +26,7 @@ return array(
                 ),
                 'upgrade' => array(
                     'options' => array(
-                        'route'    => 'version upgrade [<number>] [--verbose|-v]',
+                        'route'    => 'version upgrade [<target>] [--verbose|-v]',
                         'defaults' => array(
                             'controller' => 'Valorin\Version\Controller\Version',
                             'action'     => 'upgrade'
@@ -35,7 +35,7 @@ return array(
                 ),
                 'downgrade' => array(
                     'options' => array(
-                        'route'    => 'version downgrade <number> [--verbose|-v]',
+                        'route'    => 'version downgrade <target> [--verbose|-v]',
                         'defaults' => array(
                             'controller' => 'Valorin\Version\Controller\Version',
                             'action'     => 'downgrade'

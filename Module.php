@@ -79,10 +79,10 @@ class Module implements
     {
         return array(
             "Version Management",
-            "version status           [--verbose|-v]" => "Display the current version status of application.",
-            "version upgrade          [--verbose|-v]" => "Upgrade the application to the latest version.",
-            "version upgrade   NUMBER [--verbose|-v]" => "Upgrade the application to the specified version.",
-            "version downgrade NUMBER [--verbose|-v]" => "Downgrade the application to the specified version.",
+            "version status"           => "Display the current version status of application.",
+            "version upgrade"          => "Upgrade the application to the latest version.",
+            "version upgrade   TARGET" => "Upgrade the application to the specified version.",
+            "version downgrade TARGET" => "Downgrade the application to the specified version.",
             Array('--verbose', "(optional) Output debugging information."),
         );
     }

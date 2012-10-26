@@ -22,6 +22,11 @@ class VersionController extends AbstractActionController
     const NOTCONSOLE = 'You can only use this action from a console!';
 
     /**
+     * @var String
+     */
+    protected $header = "\n=====================\n== Version Manager ==\n=====================\n";
+
+    /**
      * @var DbAdapterManager
      */
     protected $dbAdapterManager;
@@ -31,6 +36,7 @@ class VersionController extends AbstractActionController
      * Display the current status of the application version.
      *
      * @return String
+     * @throws RuntimeException
      */
     public function statusAction()
     {
@@ -77,6 +83,27 @@ class VersionController extends AbstractActionController
         }
 
         return $output."\n";
+    }
+
+
+    /**
+     * Downgrade the application
+     *
+     * @return String
+     * @throws RuntimeException
+     */
+    public function downgradeAction()
+    {
+        /**
+         * Get Request & verify ConsoleRequest
+         */
+        $request = $this->getRequest();
+
+        if (!$request instanceof ConsoleRequest) {
+            throw new \RuntimeException(self::NOTCONSOLE);
+        }
+
+        return "Not implemented yet, sorry...\n";
     }
 
 

@@ -80,7 +80,7 @@ class Module implements
             "version upgrade"          => "Upgrade the application to the latest version.",
             "version upgrade   TARGET" => "Upgrade the application to the specified version.",
             "version downgrade TARGET" => "Downgrade the application to the specified version.",
-            Array('--verbose', "(optional) Output debugging information."),
+            //Array('--verbose', "(optional) Output debugging information."),
         );
     }
 }

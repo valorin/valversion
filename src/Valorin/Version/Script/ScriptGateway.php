@@ -80,6 +80,8 @@ class ScriptGateway
             $scripts[$matches[1]] = new $class($this);
         }
 
+        ksort($scripts);
+        
         return $scripts;
     }
 }

@@ -36,12 +36,12 @@ class ScriptGateway
     /**
      * Returns the latest version number
      *
-     * @param  String  $class Get latest version for class
+     * @param  String  $manager Manager to query for latest version
      * @return Integer
      */
-    public function getLatest($class)
+    public function getLatest($manager)
     {
-        $scripts  = $this->getScripts($class);
+        $scripts  = $this->getScripts($manager);
         $versions = array_keys($scripts);
         return array_pop($versions);
     }
@@ -50,20 +50,20 @@ class ScriptGateway
     /**
      * Returns an Array of version scripts
      *
-     * @param  String  $class Get latest version for class
+     * @param  String  $manager Manage to retrieve scripts for
      * @return Array
      * @throws VersionException
      */
-    public function getScripts($class)
+    public function getScripts($manager)
     {
         /**
          * Load scripts from 'class_dir'
          */
-        if (!is_readable($this->config[$class]['class_dir'])) {
-            throw new VersionException("Unable to read scripts dir: {$this->config[$class]['class_dir']}");
+        if (!is_readable($this->config[$manager]['class_dir'])) {
+            throw new VersionException("Unable to read scripts dir: {$this->config[$manager]['class_dir']}");
         }
 
-        $dir = scandir($this->config[$class]['class_dir']);
+        $dir = scandir($this->config[$manager]['class_dir']);
 
 
         /**
@@ -75,8 +75,8 @@ class ScriptGateway
                 continue;
             }
 
-            require_once $this->config[$class]['class_dir']."/".$file;
-            $class = $this->config[$class]['class_namespace']."\\".$matches[2];
+            require_once $this->config[$manager]['class_dir']."/".$file;
+            $class = $this->config[$manager]['class_namespace']."\\".$matches[2];
             $scripts[$matches[1]] = new $class($this);
         }
 

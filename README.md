@@ -1,7 +1,7 @@
 ZF2 Version Module v2
 =====================
 
-A simple versioning system for ZF2 applications using the `Zend\Console` package to 
+A simple versioning system for ZF2 applications using the `Zend\Console` package to
 provide a secure way to manage versions.
 It currently supports the `Zend\Db\Adapter` class for database management, although
 it has been built to handle other adapter modules if required.
@@ -23,7 +23,7 @@ it has been built to handle other adapter modules if required.
 
 2. Run `./composer.phar install` to download the module into your application.
 
-3. Add the module (`Valorin\Version`) `config/application.config.php`:
+3. Add the module (`ValVersion`) `config/application.config.php`:
 
     ```php
     <?php
@@ -32,7 +32,7 @@ it has been built to handle other adapter modules if required.
         'modules' => array(
             'Application',
             // ...
-            'Valorin\Version',
+            'ValVersion',
         ),
         // ...
     );
@@ -44,12 +44,10 @@ it has been built to handle other adapter modules if required.
     <?php
     return array(
         // ...
-        'valorin' => Array(
-            'version' => Array(
-                'DbAdapter' => Array(
-                    'class_dir'       => __DIR__ ."/../../data/versions",
-                    'class_namespace' => "\Application\Version",
-                ),
+        'valversion' => Array(
+            'DbAdapter' => Array(
+                'class_dir'       => __DIR__ ."/../../data/versions",
+                'class_namespace' => "\Application\Version",
             ),
         ),
         // ...
@@ -67,7 +65,7 @@ it has been built to handle other adapter modules if required.
     <?php
     namespace Application\Version;
 
-    use Valorin\Version\Script\VersionAbstract;
+    use ValVersion\Script\VersionAbstract;
 
     class CreateStructure extends VersionAbstract
     {
@@ -112,8 +110,8 @@ it has been built to handle other adapter modules if required.
 
     ```bash
     valorin@gandalf:~/workspace/zf$ php ./public/index.php
-    > Valorin/Version module v2.0.0 alpha
-    
+    > ValVersion module v2.0.0 alpha
+
     Version Management
       index.php version status              Display the current version status of application.
       index.php version upgrade             Upgrade the application to the latest version.
@@ -126,4 +124,4 @@ Have fun :)
 
 ## Licence
 
-See [LICENCE.txt](https://github.com/valorin/ValVersion/blob/master/LICENCE.txt).
+See [LICENCE.txt](https://github.com/valorin/valversion/blob/master/LICENCE.txt).

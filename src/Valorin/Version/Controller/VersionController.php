@@ -1,16 +1,16 @@
 <?php
 /**
- * Valorin/Version - ZF2 Version Module
+ * ValVersion - ZF2 Version Module
  * A simple database versioning system for ZF2 applications.
  *
  * Copyright (c) 2012, Stephen Rees-Carter <http://stephen.rees-carter.net/>
  * New BSD Licence, see LICENCE.txt
  */
 
-namespace Valorin\Version\Controller;
+namespace ValVersion\Controller;
 
-use Valorin\Version\Manager\DbAdapter as DbAdapterManager;
-use Valorin\Version\Script\ScriptGateway;
+use ValVersion\Manager\DbAdapter as DbAdapterManager;
+use ValVersion\Script\ScriptGateway;
 use Zend\Console\Request as ConsoleRequest;
 use Zend\Mvc\Controller\AbstractActionController;
 
@@ -150,13 +150,13 @@ class VersionController extends AbstractActionController
         $config = $this->getServiceLocator()->get('Config');
 
         if (!is_null($key)) {
-            if (isset($config['valorin']['version'][$key])) {
-                return $config['valorin']['version'][$key];
+            if (isset($config['valversion'][$key])) {
+                return $config['valversion'][$key];
             }
             return null;
         }
 
-        return $config['valorin']['version'];
+        return $config['valversion'];
     }
 
 
@@ -167,6 +167,6 @@ class VersionController extends AbstractActionController
      */
     public function getScriptGateway()
     {
-        return $this->getServiceLocator()->get('Valorin\Version\Script\ScriptGateway');
+        return $this->getServiceLocator()->get('ValVersion\Script\ScriptGateway');
     }
 }

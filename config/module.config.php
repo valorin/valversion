@@ -1,15 +1,13 @@
 <?php
 return array(
-    'valorin' => Array(
-        'version' => Array(
-            'managers' => Array(
-                'DbAdapter' => 'Valorin\Version\Manager\DbAdapter',
-            ),
+    'valversion' => Array(
+        'managers' => Array(
+            'DbAdapter' => 'ValVersion\Manager\DbAdapter',
         ),
     ),
     'controllers' => array(
         'invokables' => array(
-            'Valorin\Version\Controller\Version' => 'Valorin\Version\Controller\VersionController',
+            'ValVersion\Controller\Version' => 'ValVersion\Controller\VersionController',
         ),
     ),
     'console' => array(
@@ -19,7 +17,7 @@ return array(
                     'options' => array(
                         'route'    => 'version status [--verbose|-v]',
                         'defaults' => array(
-                            'controller' => 'Valorin\Version\Controller\Version',
+                            'controller' => 'ValVersion\Controller\Version',
                             'action'     => 'status'
                         )
                     )
@@ -28,7 +26,7 @@ return array(
                     'options' => array(
                         'route'    => 'version upgrade [<target>] [--verbose|-v]',
                         'defaults' => array(
-                            'controller' => 'Valorin\Version\Controller\Version',
+                            'controller' => 'ValVersion\Controller\Version',
                             'action'     => 'upgrade'
                         )
                     )
@@ -37,7 +35,7 @@ return array(
                     'options' => array(
                         'route'    => 'version downgrade <target> [--verbose|-v]',
                         'defaults' => array(
-                            'controller' => 'Valorin\Version\Controller\Version',
+                            'controller' => 'ValVersion\Controller\Version',
                             'action'     => 'downgrade'
                         )
                     )

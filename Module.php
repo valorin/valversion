@@ -1,19 +1,19 @@
 <?php
 /**
- * Valorin/Version - ZF2 Version Module
+ * ValVersion - ZF2 Version Module
  *
  * A simple database versioning system for ZF2 applications.
  *
- * @package    Valorin\Version
- * @subpackage Valorin\Version\Module
+ * @package    ValVersion
+ * @subpackage ValVersion\Module
  * @copyright  Copyright (c) 2012, Stephen Rees-Carter <http://stephen.rees-carter.net/>
  * @license    New BSD Licence, see LICENCE.txt
  */
 
-namespace Valorin\Version;
+namespace ValVersion;
 
-use Valorin\Version\Manager\DbAdapter as DbAdapterManager;
-use Valorin\Version\Script\ScriptGateway;
+use ValVersion\Manager\DbAdapter as DbAdapterManager;
+use ValVersion\Script\ScriptGateway;
 use Zend\Console\Adapter\AdapterInterface as Console;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
@@ -33,9 +33,9 @@ class Module implements
     {
         return array(
             'factories' => Array(
-                'Valorin\Version\Script\ScriptGateway' => function ($sm) {
+                'ValVersion\Script\ScriptGateway' => function ($sm) {
                     $config = $sm->get('Config');
-                    return new ScriptGateway($config['valorin']['version']);
+                    return new ScriptGateway($config['valversion']);
                 },
             ),
         );
@@ -61,7 +61,7 @@ class Module implements
     public function getConsoleBanner(Console $console)
     {
         $version = trim(file_get_contents(__DIR__ ."/version.txt"));
-        return "> Valorin/Version module v{$version}\n";
+        return "> ValVersion module v{$version}\n";
     }
 
 

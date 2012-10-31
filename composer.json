@@ -2,7 +2,7 @@
     "name": "valorin/version",
     "description": "A simple database versioning system for ZF2 applications.",
     "license": "BSD-3-Clause",
-    "homepage": "https://github.com/valorin/ValVersion",
+    "homepage": "https://github.com/valorin/valversion",
     "authors": [
         {
             "name": "Stephen Rees-Carter",
@@ -16,7 +16,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "Valorin\\Version\\": "src"
+            "ValVersion": "src"
         },
         "classmap": [
             "./Module.php"

@@ -1,15 +1,15 @@
 <?php
 /**
- * Valorin/Version - ZF2 Version Module
+ * ValVersion - ZF2 Version Module
  * A simple database versioning system for ZF2 applications.
  *
  * Copyright (c) 2012, Stephen Rees-Carter <http://stephen.rees-carter.net/>
  * New BSD Licence, see LICENCE.txt
  */
 
-namespace Valorin\Version\Manager;
+namespace ValVersion\Manager;
 
-use Valorin\Version\Script\ScriptGateway;
+use ValVersion\Script\ScriptGateway;
 use Zend\ServiceManager\ServiceManager;
 
 abstract class ManagerAbstract implements ManagerInterface
@@ -194,7 +194,7 @@ abstract class ManagerAbstract implements ManagerInterface
     protected function getScriptGateway()
     {
         if (!isset($this->scriptGateway)) {
-            $this->scriptGateway = $this->sm->get('Valorin\Version\Script\ScriptGateway');
+            $this->scriptGateway = $this->sm->get('ValVersion\Script\ScriptGateway');
         }
 
         return $this->scriptGateway;

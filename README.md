@@ -1,6 +1,14 @@
 ZF2 Version Module v2
 =====================
 
+**I've stopped working on this module because I found [Phinx](https://github.com/robmorgan/phinx), a fantastic DB Migration tool. I recommend you use it!**
+
+*I'm working on ZF2 Module to integrate it into a ZF2 application: [zf2-phinx-module](https://github.com/valorin/zf2-phinx-module/).*
+
+Legacy information
+------------------
+
+
 A simple versioning system for ZF2 applications using the `Zend\Console` package to
 provide a secure way to manage versions.
 It currently supports the `Zend\Db\Adapter` class for database management, although
